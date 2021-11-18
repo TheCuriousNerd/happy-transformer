@@ -44,8 +44,8 @@ class HappyGeneration(HappyTransformer):
     to understand and to offload complex tasks to
     other classes.
     """
-    def __init__(self, model_type: str = "GPT2", model_name: str = "gpt2", 
-                 load_path: str = "", use_auth_token: str = None):
+    def __init__(self, model_type: str = "GPT2", model_name: str = "gpt2",
+                 load_path: str = "", use_auth_token: str = None, device_number = detect_cuda_device_number()):
 
         self.adaptor = get_adaptor(model_type)
 
@@ -55,7 +55,6 @@ class HappyGeneration(HappyTransformer):
             model = AutoModelForCausalLM.from_pretrained(model_name, use_auth_token=use_auth_token)
 
         super().__init__(model_type, model_name, model, use_auth_token=use_auth_token)
-        device_number = detect_cuda_device_number()
 
         self._pipeline = TextGenerationPipeline(model=self.model, tokenizer=self.tokenizer, device=device_number)
 
