@@ -45,7 +45,7 @@ class HappyGeneration(HappyTransformer):
     other classes.
     """
     def __init__(self, model_type: str = "GPT2", model_name: str = "gpt2",
-                 load_path: str = "", use_auth_token: str = None, device_number = detect_cuda_device_number()):
+                 load_path: str = "", use_auth_token: str = None, device_number: int = detect_cuda_device_number()):
 
         self.adaptor = get_adaptor(model_type)
 
